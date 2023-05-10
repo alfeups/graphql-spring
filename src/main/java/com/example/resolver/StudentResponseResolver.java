@@ -21,7 +21,9 @@ public class StudentResponseResolver implements GraphQLResolver<StudentResponse>
 		
 		if (studentResponse.getStudent().getLearningSubjects() != null) {
 			for (Subject subject: studentResponse.getStudent().getLearningSubjects()) {
-				if (subjectNameFilter.name().equalsIgnoreCase(subject.getSubjectName())) {
+				if (subjectNameFilter.name().equalsIgnoreCase("ALL")){
+					learningSubjects.add(new SubjectResponse(subject));
+				} else if (subjectNameFilter.name().equalsIgnoreCase(subject.getSubjectName())) {
 					learningSubjects.add(new SubjectResponse(subject));
 				}
 			}
