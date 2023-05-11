@@ -1,11 +1,13 @@
 package com.example.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class CreateSubjectRequest {
 
     private String subjectName;
-    private Double markisObtained;
+    private Double marksObtained;
 
 }

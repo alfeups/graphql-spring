@@ -17,24 +17,23 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    @Autowired
-    StudentRepository studentRepository;
-
 	@Autowired
 	AddressRepository addressRepository;
 
 	@Autowired
 	SubjectRepository subjectRepository;
 
-    public Student getStudentById(long id) {
-        return studentRepository.findById(id).get();
-    }
+	@Autowired
+	StudentRepository studentRepository;
 
-    public Student createStudent(CreateStudentRequest createStudentRequest) {
-        Student student = new Student(createStudentRequest);
+	public Student getStudentById (long id) {
+		return studentRepository.findById(id).get();
+	}
 
-        Address address = new Address();
+	public Student createStudent (CreateStudentRequest createStudentRequest) {
+		Student student = new Student(createStudentRequest);
 
+		Address address = new Address();
 		address.setStreet(createStudentRequest.getStreet());
 		address.setCity(createStudentRequest.getCity());
 
@@ -43,21 +42,25 @@ public class StudentService {
 		student.setAddress(address);
 		student = studentRepository.save(student);
 
-		List<Subject> subjectList = new ArrayList<>();
+		List<Subject> subjectsList = new ArrayList<Subject>();
 
-		if (createStudentRequest.getSubjectsLearning() != null){
-			for (CreateSubjectRequest createSubjectRequest : createStudentRequest.getSubjectsLearning()) {
+		if(createStudentRequest.getSubjectsLearning() != null) {
+			for (CreateSubjectRequest createSubjectRequest :
+					createStudentRequest.getSubjectsLearning()) {
 				Subject subject = new Subject();
 				subject.setSubjectName(createSubjectRequest.getSubjectName());
-				subject.setMarksObtained(createSubjectRequest.getMarkisObtained());
+				subject.setMarksObtained(createSubjectRequest.getMarksObtained());
 				subject.setStudent(student);
 
-				subjectList.add(subject);
+				subjectsList.add(subject);
 			}
-			subjectRepository.saveAll(subjectList);
+
+			subjectRepository.saveAll(subjectsList);
+
 		}
 
-		student.setLearningSubjects(subjectList);
+		student.setLearningSubjects(subjectsList);
+
 		return student;
-    }
+	}
 }

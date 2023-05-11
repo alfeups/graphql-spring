@@ -11,7 +11,7 @@ input CreateStudentRequest {
     subjectsLearning : [CreateSubjectRequest]
 }
 
-input CreateSubjectRequest{
+input CreateSubjectRequest {
     subjectName : String
-    markisObtained : Float
+    marksObtained : Float
 }

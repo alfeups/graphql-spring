@@ -2,7 +2,7 @@ type Query {
 	firstQuery : String
 	secondQuery : String
 	fullName(sampleRequest : SampleRequest) : String
-	student(id : Long) : StudentResponse
+	student(id : Int) : StudentResponse
 }
 
 input SampleRequest {
@@ -11,7 +11,7 @@ input SampleRequest {
 }
 
 type StudentResponse {
-	id : Long
+	id : Int
 	firstName : String
 	lastName : String
 	email : String
@@ -22,13 +22,13 @@ type StudentResponse {
 }
 
 type SubjectResponse {
-	id : Long
+	id : Int
 	subjectName : String
 	marksObtained : Float
 }
 
 enum SubjectNameFilter {
-	ALL,
+	All,
 	Java,
 	MySQL,
 	MongoDB

@@ -1,8 +1,9 @@
 package com.example.enums;
 
 public enum SubjectNameFilter {
-	ALL,
+	All,
 	Java,
 	MySQL,
-	MongoDB
+	MongoDB,
+	GraphQL
 }
